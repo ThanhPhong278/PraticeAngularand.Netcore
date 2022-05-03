@@ -9,6 +9,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-icon.mat-primarys{
     color: #B00710;
     padding-bottom: 4px;
+    /*change posision icon if you want  */
+    position: absolute;
+    top: 51%;
+    left: 7%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
 }
 h2{
     color: #B00710;
