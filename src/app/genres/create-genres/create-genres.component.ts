@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { firstLetterUpercase } from 'src/app/validators/firstLetterUppercase';
+import { genreCreationDTO } from '../genres.model';
 
 @Component({
   selector: 'app-create-genres',
@@ -9,11 +12,13 @@ import { Router } from '@angular/router';
 export class CreateGenresComponent implements OnInit {
 
   constructor(private route: Router) { }
-
   ngOnInit(): void {
+   
   }
 
-  saveChanges(){
+  saveChanges(genreCreationDTO: genreCreationDTO){
+    console.log(genreCreationDTO)
     this.route.navigate(['/genres']);
   }
+
 }

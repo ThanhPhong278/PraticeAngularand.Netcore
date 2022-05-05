@@ -21,6 +21,9 @@ import { EditActorComponent } from './actors/edit-actor/edit-actor.component';
 import { EditGenreComponent } from './genres/edit-genre/edit-genre.component';
 import { EditMovieTheaterComponent } from './movie-theaters/edit-movie-theater/edit-movie-theater.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormGenreComponent } from './genres/form-genre/form-genre.component';
 
 
 @NgModule({
@@ -42,6 +45,8 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
     EditGenreComponent,
     EditMovieTheaterComponent,
     EditMovieComponent,
+    PagenotfoundComponent,
+    FormGenreComponent,
 
 
     
@@ -51,6 +56,7 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
