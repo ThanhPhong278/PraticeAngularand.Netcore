@@ -24,6 +24,9 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGenreComponent } from './genres/form-genre/form-genre.component';
+import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
+import { FormActorComponent } from './actors/form-actor/form-actor.component';
+
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import { FormGenreComponent } from './genres/form-genre/form-genre.component';
     EditMovieComponent,
     PagenotfoundComponent,
     FormGenreComponent,
+    MovieFilterComponent,
+    FormActorComponent,
+    
 
 
     
