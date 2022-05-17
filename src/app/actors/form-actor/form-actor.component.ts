@@ -21,6 +21,7 @@ export class FormActorComponent implements OnInit {
         }],
       dateOfBirth: '',
       picture: '',
+      biography: '',
     });
     if(this.model !== undefined){
       this.form.patchValue(this.model);
@@ -32,5 +33,9 @@ export class FormActorComponent implements OnInit {
 
   saveChanges(){
     this.onSaveChanges.emit(this.form.value);
+  }
+
+  changeMarkdown(content){
+    this.form.get('biography').setValue(content);
   }
 }

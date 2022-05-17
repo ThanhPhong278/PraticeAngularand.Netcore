@@ -22,12 +22,13 @@ import { EditGenreComponent } from './genres/edit-genre/edit-genre.component';
 import { EditMovieTheaterComponent } from './movie-theaters/edit-movie-theater/edit-movie-theater.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormGenreComponent } from './genres/form-genre/form-genre.component';
 import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
 import { FormActorComponent } from './actors/form-actor/form-actor.component';
 import { InputImgComponent } from './utilities/input-img/input-img.component';
-
+import { InputMarkdownComponent } from './utilities/input-markdown/input-markdown.component';
+import { MarkdownModule } from 'ngx-markdown'
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { InputImgComponent } from './utilities/input-img/input-img.component';
     MovieFilterComponent,
     FormActorComponent,
     InputImgComponent,
+    InputMarkdownComponent,
     
 
 
@@ -65,6 +67,8 @@ import { InputImgComponent } from './utilities/input-img/input-img.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    FormsModule,
+    MarkdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
