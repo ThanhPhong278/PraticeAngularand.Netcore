@@ -4,10 +4,12 @@
         <input formControlName="name" matInput/>
         <mat-error>The name field is required</mat-error>
     </mat-form-field>
+    <h4>Select the location of theater </h4>
+    <app-map></app-map>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid" >Save changes</button>
-        <a mat-stroked-button routerLink="/movie-theaters">Cancel</a>
+        <a mat-stroked-button routerLink="/movietheaters">Cancel</a>
     </div>
     
 </form>
