@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { latLng, LeafletMouseEvent, marker, Marker, tileLayer, icon } from 'leaflet';
 
-let layers = marker([ 46.879966, -121.726909 ], {
-  icon: icon({
-     iconSize: [ 25, 41 ],
-     iconAnchor: [ 13, 41 ],
-     iconUrl: 'assets/marker-icon.png',
-     shadowUrl: 'assets/marker-shadow.png'
-  })
+const iconRetinaUrl = 'assets/marker-icon-2x.png';
+const iconUrl = 'assets/marker-icon.png';
+const shadowUrl = 'assets/marker-shadow.png';
+const iconDefault = icon({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
 });
+Marker.prototype.options.icon = iconDefault;
 
 @Component({
   selector: 'app-map',

@@ -1,9 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url("https://unpkg.com/leaflet@1.8.0/dist/leaflet.css");
 /* html, body { height: 100%; } */
-.leaflet-default-icon-path {
-    background-image: url(https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png);
-}
 body { 
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 }
