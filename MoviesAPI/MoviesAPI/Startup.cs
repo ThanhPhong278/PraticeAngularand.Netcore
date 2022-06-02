@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -7,9 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MoviesAPI.Filters;
 using MoviesAPI.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,8 +32,14 @@ namespace MoviesAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(MyExceptionFilter));
+            });
+            services.AddResponseCaching();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
             services.AddSingleton<IRepository, InMemoryRepository>();
+            services.AddTransient<MyActionFilter>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
@@ -37,8 +47,32 @@ namespace MoviesAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+            app.Use(async (context, next) =>
+            {
+                using (var swapStream = new MemoryStream())
+                {
+                    var originalReposneBody = context.Response.Body;
+                    context.Response.Body = swapStream;
+                    await next.Invoke();
+                    swapStream.Seek(0, SeekOrigin.Begin);
+                    string responeBody = new StreamReader(swapStream).ReadToEnd();
+                    swapStream.Seek(0, SeekOrigin.Begin);
+                    await swapStream.CopyToAsync(originalReposneBody);
+                    context.Response.Body = originalReposneBody;
+
+                    logger.LogInformation(responeBody);
+                }
+            });
+            app.Map("/map1", (app) =>
+            {
+                app.Run(async context =>
+                {
+                    await context.Response.WriteAsync("Im shortocircuiting the pipeline");
+                });
+            });
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -49,6 +83,10 @@ namespace MoviesAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseResponseCaching();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

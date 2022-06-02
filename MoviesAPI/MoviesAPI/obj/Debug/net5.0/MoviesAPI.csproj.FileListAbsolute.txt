@@ -27,3 +27,10 @@ D:\Angular and .NetCore\MoviesAPI\MoviesAPI\obj\Debug\net5.0\MoviesAPI.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\obj\Debug\net5.0\ref\MoviesAPI.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\obj\Debug\net5.0\MoviesAPI.pdb
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\obj\Debug\net5.0\MoviesAPI.genruntimeconfig.cache
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
