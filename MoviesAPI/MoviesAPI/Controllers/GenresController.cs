@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using MoviesAPI.Entities;
 using MoviesAPI.Filters;
-using MoviesAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,56 +16,38 @@ namespace MoviesAPI.Controllers
     [ApiController]
     public class GenresController: ControllerBase
     {
-        private readonly IRepository repository;
+
         private readonly ILogger<GenresController> logger;
 
-        public GenresController(IRepository repository, ILogger<GenresController> logger)
+        public GenresController( ILogger<GenresController> logger)
         {
-            this.repository = repository;
             this.logger = logger;
         }
         [HttpGet]
-        [HttpGet("list")]
-        [HttpGet("/allgenres")]
-        /*[ResponseCache(Duration =60)]*/
-        [ServiceFilter(typeof(MyActionFilter))]
         public async Task<ActionResult<List<Genre>>> GetAll()
         {
             logger.LogInformation("Getting all the genres");
-            return await repository.GetAllGenres();
+            return new List<Genre>() { new Genre() { Id = 1, Name = "Comedy" } };
         } 
         [HttpGet("{Id:int}", Name ="getGenre")]
-        public ActionResult<Genre> Get(int Id,string param2)
+        public ActionResult<Genre> Get(int Id)
         {
-            logger.LogDebug("get by Id method executing...");
-            var genre = repository.GetGenreById(Id);
-            if (genre == null)
-            {
-                logger.LogWarning($"Genre with Id {Id} not found");
-                logger.LogError("This is an error");
-/*                throw new ApplicationException();*/
-                return NotFound();
-            }
-            return genre;
+            throw new NotImplementedException();
         }
         [HttpPost]
         public ActionResult CreateGenre([FromBody] Genre genre)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            repository.AddGenre(genre);
-            return NoContent();
+            throw new NotImplementedException();
         }
         [HttpPut]
         public ActionResult EditGenre([FromBody] Genre genre)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            return NoContent();
+            throw new NotImplementedException();
+        }
+        [HttpDelete]
+        public ActionResult DeleteGenre()
+        {
+            throw new NotImplementedException();
         }
     }
 }
