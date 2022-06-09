@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
@@ -36,6 +36,7 @@ import { MapComponent } from './utilities/map/map.component';
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
 import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors-autocomplete.component';
+import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors
     FormMovieComponent,
     MultipleSelectorComponent,
     ActorsAutocompleteComponent,
+    DisplayErrorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,7 @@ import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors
     LeafletModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

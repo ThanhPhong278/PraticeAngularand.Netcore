@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { genreDTO } from '../genres.model';
 import { GenresService } from '../genres.service';
 
 @Component({
@@ -8,12 +9,23 @@ import { GenresService } from '../genres.service';
 })
 export class IndexGenresComponent implements OnInit {
 
+  genres: genreDTO[];
+  columnsToDisplay = ['name', 'actions'];
   constructor(private genresSerrvice: GenresService) { }
 
   ngOnInit(): void {
+   this.loadGenres();
+  }
+
+  loadGenres() {
     this.genresSerrvice.getAll().subscribe(genres =>{
-      console.log(genres);
+      this.genres = genres;
     });
   }
 
+  delete(id: number) {
+    this.genresSerrvice.delete(id).subscribe(() =>{
+      this.loadGenres();
+    });
+  }
 }

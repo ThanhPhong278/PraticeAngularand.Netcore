@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,14 +31,19 @@ namespace MoviesAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(option =>
+            services.AddDbContext<ApplicationDbContext>(option =>
+            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors(options =>
             {
-                option.AddDefaultPolicy(buider =>
+                options.AddDefaultPolicy(builder =>
                 {
                     var frontendURL = Configuration.GetValue<string>("frontend_url");
-                    buider.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+
+                    builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader()
+                    .WithExposedHeaders(new string[] { "totalAmountOfRecords" });
                 });
             });
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(MyExceptionFilter));
