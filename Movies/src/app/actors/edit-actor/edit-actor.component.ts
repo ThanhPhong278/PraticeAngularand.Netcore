@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { actorCreateDTO, actorDTO } from '../actors.model';
 import { ActorsService } from '../actors.service';
@@ -13,7 +14,8 @@ export class EditActorComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, 
     private actorsService: ActorsService,
-    private route: Router) { }
+    private route: Router,
+    private toastr: ToastrService) { }
 
   model: actorDTO;
   
@@ -25,6 +27,7 @@ export class EditActorComponent implements OnInit {
   saveChanges(actorCreateDTO: actorCreateDTO){
     console.log(actorCreateDTO);
     this.actorsService.edit(this.model.id, actorCreateDTO).subscribe(() => {
+      this.toastr.success("Update actor successfully","Success")
       this.route.navigate(['/actors']);
     });
   }

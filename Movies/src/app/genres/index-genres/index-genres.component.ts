@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 import { genreDTO } from '../genres.model';
 import { GenresService } from '../genres.service';
 
@@ -15,7 +16,7 @@ export class IndexGenresComponent implements OnInit {
   totalAmountOfRecords;
   currentPage = 1;
   pageSize = 5;
-  constructor(private genresSerrvice: GenresService) { }
+  constructor(private genresSerrvice: GenresService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
    this.loadGenres();
@@ -36,6 +37,7 @@ export class IndexGenresComponent implements OnInit {
 
   delete(id: number) {
     this.genresSerrvice.delete(id).subscribe(() =>{
+      this.toastr.success("Delete genre successfully","Success");
       this.loadGenres();
     });
   }

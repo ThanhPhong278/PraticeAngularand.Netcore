@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { actorDTO } from '../actors.model';
+import { ToastrService } from 'ngx-toastr';
 import { ActorsService } from '../actors.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ActorsService } from '../actors.service';
 })
 export class IndexActorsComponent implements OnInit {
 
-  constructor(private actorService: ActorsService) { }
+  constructor(private actorService: ActorsService, private toastr: ToastrService) { }
 
   actors: actorDTO[];
   columnsToDisplay = ['name','dateOfBirth','pictures', 'actions'];
@@ -36,6 +37,7 @@ export class IndexActorsComponent implements OnInit {
   }
   delete(id: number){
     this.actorService.delete(id).subscribe(() => {
+      this.toastr.success("Delete actor successfully","Success");
       this.loadData();
     });
   }

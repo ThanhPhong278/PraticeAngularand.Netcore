@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { genreCreationDTO, genreDTO } from '../genres.model';
 import { GenresService } from '../genres.service';
 
@@ -12,7 +13,8 @@ export class EditGenreComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
      private genreService: GenresService,
-     private router: Router) { }
+     private router: Router,
+     private toastr: ToastrService) { }
 
   model: genreDTO;
   ngOnInit(): void {
@@ -25,8 +27,9 @@ export class EditGenreComponent implements OnInit {
 
   saveChanges(genreCreationDTO: genreCreationDTO){
     this.genreService.edit(this.model.id, genreCreationDTO).subscribe(() =>{
-      this.router.navigate(["/genres"]);
-    })
+      this.toastr.success("Update genre successfully","Success")
+      this.router.navigate(["/genres"]);      
+    });
   }
 
 }
