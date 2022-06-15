@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using MoviesAPI.DTOs;
 using MoviesAPI.Entities;
 using MoviesAPI.Filters;
+using MoviesAPI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,12 @@ namespace MoviesAPI.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<List<GenreDTO>>> GetAll()
+        public async Task<ActionResult<List<GenreDTO>>> GetAll([FromQuery] PaginationDTO paginationDTO)
         {
             logger.LogInformation("Getting all the genres");
-            var genres = await context.Genres.OrderBy(x => x.Name).ToListAsync();
+            var queryable = context.Genres.AsQueryable();
+            await HttpContext.InsertParamentersPaginationInHeader(queryable);
+            var genres = await queryable.OrderBy(x => x.Name).Paginate(paginationDTO).ToListAsync();
             return mapper.Map<List<GenreDTO>>(genres);
         }
         [HttpGet("{Id:int}", Name = "getGenre")]

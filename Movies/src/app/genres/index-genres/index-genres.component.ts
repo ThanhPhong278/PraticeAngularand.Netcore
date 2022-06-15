@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { genreDTO } from '../genres.model';
 import { GenresService } from '../genres.service';
 
@@ -11,6 +12,9 @@ export class IndexGenresComponent implements OnInit {
 
   genres: genreDTO[];
   columnsToDisplay = ['name', 'actions'];
+  totalAmountOfRecords;
+  currentPage = 1;
+  pageSize = 5;
   constructor(private genresSerrvice: GenresService) { }
 
   ngOnInit(): void {
@@ -18,9 +22,16 @@ export class IndexGenresComponent implements OnInit {
   }
 
   loadGenres() {
-    this.genresSerrvice.getAll().subscribe(genres =>{
-      this.genres = genres;
+    this.genresSerrvice.getAll(this.currentPage, this.pageSize).subscribe(respone =>{
+      this.genres = respone.body;
+      this.totalAmountOfRecords = respone.headers.get("totalAmountOfRecords");
     });
+  }
+
+  updatePagination(event: PageEvent){
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.loadGenres();
   }
 
   delete(id: number) {
