@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { firstLetterUpercase } from 'src/app/validators/firstLetterUppercase';
 import { actorCreateDTO, actorDTO } from '../actors.model';
 
 @Component({
@@ -17,7 +18,7 @@ export class FormActorComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
         name: ['',{
-          validators: [Validators.required,]
+          validators: [Validators.required,firstLetterUpercase(), Validators.maxLength(120)]
         }],
       dateOfBirth: '',
       picture: '',
@@ -37,5 +38,22 @@ export class FormActorComponent implements OnInit {
 
   changeMarkdown(content){
     this.form.get('biography').setValue(content);
+  }
+
+  getErrorMessageFieldName(){
+    const field = this.form.get('name');
+
+    if (field.hasError('required')){
+      return 'The name field is required';
+    }
+
+    if (field.hasError('minlength')){
+      return 'The maximum length is 120'
+    }
+
+    if (field.hasError('firstLetterUpercase')){
+      return field.getError('firstLetterUpercase').message;
+    }
+    return'';
   }
 }

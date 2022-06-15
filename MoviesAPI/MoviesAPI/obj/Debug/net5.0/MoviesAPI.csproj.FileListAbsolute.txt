@@ -65,3 +65,9 @@ D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.Extension
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Azure.Core.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Azure.Storage.Common.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\System.IO.Hashing.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\System.Memory.Data.dll

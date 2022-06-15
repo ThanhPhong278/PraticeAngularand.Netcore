@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MoviesAPI.Filters;
+using MoviesAPI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,6 +45,8 @@ namespace MoviesAPI
                 });
             });
             services.AddAutoMapper(typeof(Startup));
+            services.AddHttpContextAccessor();
+            services.AddScoped<IFileStorageService, InAppStorageService>();
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(MyExceptionFilter));
@@ -67,6 +70,8 @@ namespace MoviesAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
