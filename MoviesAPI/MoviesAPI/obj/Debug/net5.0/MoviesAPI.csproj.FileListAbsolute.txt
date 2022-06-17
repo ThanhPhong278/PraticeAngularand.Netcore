@@ -71,3 +71,7 @@ D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Azure.Storage.Commo
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\System.IO.Hashing.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\System.Memory.Data.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\NetTopologySuite.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\NetTopologySuite.IO.SqlServerBytes.dll
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\obj\Debug\net5.0\EFCoreSqlServerNetTopologySuite.cs
