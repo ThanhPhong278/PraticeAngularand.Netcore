@@ -23,6 +23,6 @@ export class CreateActorComponent implements OnInit {
     this.actorsService.create(actorCreateDTO).subscribe(()=>{
       this.toastr.success("Create actor successfully","Success")
       this.router.navigate(['/actors']);
-    },error => this.errors = parseWebAPIErrors(error));
+    },error => this.errors = parseWebAPIErrors(error), () => this.toastr.error("Create actor unsuccessfully","Fail") );
   }
 }
