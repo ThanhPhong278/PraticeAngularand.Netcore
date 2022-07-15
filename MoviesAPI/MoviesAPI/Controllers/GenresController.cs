@@ -40,6 +40,15 @@ namespace MoviesAPI.Controllers
             var genres = await queryable.OrderBy(x => x.Name).Paginate(paginationDTO).ToListAsync();
             return mapper.Map<List<GenreDTO>>(genres);
         }
+
+        [HttpGet("NoPaging")]
+        public async Task<ActionResult<List<GenresDTO>>> Get()
+        {
+            logger.LogInformation("Getting all the genres");
+            var genres = await context.Genres.OrderBy(x => x.Name).ToListAsync();
+            return mapper.Map<List<GenresDTO>>(genres);
+        }
+
         [HttpGet("{Id:int}", Name = "getGenre")]
         public async Task<ActionResult<GenreDTO>> Get(int Id)
         {

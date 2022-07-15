@@ -20,6 +20,10 @@ export class GenresService {
     return this.http.get<genreDTO[]>(this.apiURL, {observe: 'response', params});
   }
 
+  getAlls(): Observable<genreDTO[]>{
+    return this.http.get<genreDTO[]>(`${this.apiURL}/NoPaging`);
+  }
+
   getById(id: number): Observable<genreDTO>{
     return this.http.get<genreDTO>(`${this.apiURL}/${id}`);
   }
