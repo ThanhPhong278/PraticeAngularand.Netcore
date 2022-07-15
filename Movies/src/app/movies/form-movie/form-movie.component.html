@@ -30,6 +30,7 @@
 
     <h4> Summary</h4>
     <app-input-markdown [markdownContent]="model?.summary"
+    [lable]="'Summary'"
     (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
 
     <h4>Select the Genres</h4>
@@ -41,7 +42,7 @@
     [SelectedItems]="selectedMovieTheaters"></app-multiple-selector>
 
     <h4>Select the Actors</h4>
-    <app-actors-autocomplete></app-actors-autocomplete>
+    <app-actors-autocomplete [selectedActors]="selectedActors"></app-actors-autocomplete>
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
             Save Changes

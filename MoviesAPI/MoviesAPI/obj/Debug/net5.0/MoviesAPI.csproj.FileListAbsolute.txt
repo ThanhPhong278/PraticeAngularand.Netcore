@@ -75,3 +75,4 @@ D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Microsoft.EntityFra
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\NetTopologySuite.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\NetTopologySuite.IO.SqlServerBytes.dll
 D:\Angular and .NetCore\MoviesAPI\MoviesAPI\obj\Debug\net5.0\EFCoreSqlServerNetTopologySuite.cs
+D:\Angular and .NetCore\MoviesAPI\MoviesAPI\bin\Debug\net5.0\Newtonsoft.Json.dll

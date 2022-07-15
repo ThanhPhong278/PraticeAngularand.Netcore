@@ -1,9 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { formatDateFormData } from '../utilities/utils';
-import { actorCreateDTO, actorDTO } from './actors.model';
+import { actorCreateDTO, actorDTO, actorsMovieDTO } from './actors.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,11 @@ export class ActorsService {
     params = params.append('page', page.toString());
     params = params.append('recordsPerPage', recordsPerPage.toString());
     return this.http.get<actorDTO[]>(this.apiURL, {observe: 'response', params});
+  }
+  searchByName(name: string): Observable<actorsMovieDTO[]>{
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.http.post<actorsMovieDTO[]>(`${this.apiURL}/searchByName`, 
+    JSON.stringify(name), {headers});
   }
   getById(id: number): Observable<actorDTO>{
     return this.http.get<actorDTO>(`${this.apiURL}/${id}`);
