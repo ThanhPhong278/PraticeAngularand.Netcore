@@ -7,6 +7,7 @@ import { CreateGenresComponent } from './genres/create-genres/create-genres.comp
 import { EditGenreComponent } from './genres/edit-genre/edit-genre.component';
 import { IndexGenresComponent } from './genres/index-genres/index-genres.component';
 import { HomeComponent } from './home/home.component';
+import { IsAdminGuard } from './is-admin.guard';
 import { CreateMovieTheaterComponent } from './movie-theaters/create-movie-theater/create-movie-theater.component';
 import { EditMovieTheaterComponent } from './movie-theaters/edit-movie-theater/edit-movie-theater.component';
 import { IndexMovieTheaterComponent } from './movie-theaters/index-movie-theater/index-movie-theater.component';
@@ -15,22 +16,26 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { MovieFilterComponent } from './movies/movie-filter/movie-filter.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
 
 const routes: Routes = [
 {path: '', component:HomeComponent },
-{path: 'genres', component:IndexGenresComponent },
-{path: 'genres/create', component:CreateGenresComponent},
-{path: 'genres/edit/:id', component:EditGenreComponent},
-{path: 'actors', component:IndexActorsComponent },
-{path: 'actors/create', component:CreateActorComponent},
-{path: 'actors/edit/:id', component:EditActorComponent},
-{path: 'movietheaters', component:IndexMovieTheaterComponent },
-{path: 'movietheaters/create', component:CreateMovieTheaterComponent},
-{path: 'movietheaters/edit/:id', component:EditMovieTheaterComponent},
-{path: 'movies/create', component:CreateMovieComponent},
-{path: 'movies/edit/:id', component:EditMovieComponent},
+{path: 'genres', component:IndexGenresComponent, canActivate: [IsAdminGuard]},
+{path: 'genres/create', component:CreateGenresComponent, canActivate: [IsAdminGuard]},
+{path: 'genres/edit/:id', component:EditGenreComponent, canActivate: [IsAdminGuard]},
+{path: 'actors', component:IndexActorsComponent, canActivate: [IsAdminGuard]},
+{path: 'actors/create', component:CreateActorComponent, canActivate: [IsAdminGuard]},
+{path: 'actors/edit/:id', component:EditActorComponent, canActivate: [IsAdminGuard]},
+{path: 'movietheaters', component:IndexMovieTheaterComponent, canActivate: [IsAdminGuard]},
+{path: 'movietheaters/create', component:CreateMovieTheaterComponent, canActivate: [IsAdminGuard]},
+{path: 'movietheaters/edit/:id', component:EditMovieTheaterComponent, canActivate: [IsAdminGuard]},
+{path: 'movies/create', component:CreateMovieComponent, canActivate: [IsAdminGuard]},
+{path: 'movies/edit/:id', component:EditMovieComponent, canActivate: [IsAdminGuard]},
 {path: 'movies/filter', component:MovieFilterComponent},
 {path: 'movie/:id', component:MovieDetailsComponent},
+{path: 'login', component:LoginComponent},
+{path: 'register', component:RegisterComponent},
 {path: '**', component:PagenotfoundComponent},
 
 
