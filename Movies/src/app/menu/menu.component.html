@@ -29,6 +29,10 @@
         <div>
           <a mat-button routerLink="movies/create"> Create Movie </a>
         </div>
+
+        <div>
+          <a mat-button routerLink="users"> Users </a>
+        </div>
       </ng-container>
     </app-authorize-view>
 
@@ -37,7 +41,7 @@
     </div>
     <app-authorize-view>
       <ng-container authorized>
-        <span>Hello, {{securityService.getFieldFromJWT('email')}}</span>
+        <a mat-button>Hello, {{securityService.getFieldFromJWT('email')}}</a>
         <a mat-button (click)="securityService.logout()">Logout</a>
       </ng-container>
         <ng-container notAuthorized>
