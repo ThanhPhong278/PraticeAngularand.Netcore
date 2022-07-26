@@ -18,6 +18,7 @@ import { MovieFilterComponent } from './movies/movie-filter/movie-filter.compone
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
+import { UsersIndexComponent } from './security/users-index/users-index.component';
 
 const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
 {path: 'movietheaters/edit/:id', component:EditMovieTheaterComponent, canActivate: [IsAdminGuard]},
 {path: 'movies/create', component:CreateMovieComponent, canActivate: [IsAdminGuard]},
 {path: 'movies/edit/:id', component:EditMovieComponent, canActivate: [IsAdminGuard]},
+{path: 'users', component:UsersIndexComponent, canActivate: [IsAdminGuard]},
 {path: 'movies/filter', component:MovieFilterComponent},
 {path: 'movie/:id', component:MovieDetailsComponent},
 {path: 'login', component:LoginComponent},

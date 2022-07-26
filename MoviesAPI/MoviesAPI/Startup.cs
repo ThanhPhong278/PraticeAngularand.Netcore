@@ -19,6 +19,7 @@ using NetTopologySuite;
 using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,7 @@ namespace MoviesAPI
     {
         public Startup(IConfiguration configuration)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             Configuration = configuration;
         }
 
@@ -92,6 +94,10 @@ namespace MoviesAPI
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("role", "admin"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,7 +107,10 @@ namespace MoviesAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoviesAPI v1"));
+                app.UseSwaggerUI(c => {
+                    string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
+                    c.SwaggerEndpoint($"{swaggerJsonBasePath}/swagger/v1/swagger.json", "MoviesAPI v1");
+                });
             }
 
             app.UseHttpsRedirection();

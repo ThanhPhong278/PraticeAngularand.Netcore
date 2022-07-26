@@ -15,11 +15,13 @@ export class IsAdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if( this.securityService.getRole() === 'admin'){
-      return true;
-    }
-    this.router.navigate(['/login']);
-    return false;
+    
+      if (this.securityService.getRole() === 'admin'){
+        return true;
+      }
+
+      this.router.navigate(['/login']);      
+      return false;
   }
   
 }

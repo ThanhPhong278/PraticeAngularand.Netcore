@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +43,8 @@ import { AuthorizeViewComponent } from './security/authorize-view/authorize-view
 import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
 import { AuthenticationComponent } from './security/authentication/authentication.component';
+import { JwtInterceptorService } from './security/jwt-interceptor.service';
+import { UsersIndexComponent } from './security/users-index/users-index.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import { AuthenticationComponent } from './security/authentication/authenticatio
     LoginComponent,
     RegisterComponent,
     AuthenticationComponent,
+    UsersIndexComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,7 +102,11 @@ import { AuthenticationComponent } from './security/authentication/authenticatio
       preventDuplicates: true
     })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
